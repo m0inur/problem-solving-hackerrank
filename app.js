@@ -1,16 +1,47 @@
-document.getElementById("btn5").addEventListener('click', function () {
-    var btnVal2 = 0
-    for (var i = 1; i < 9; i++) {
-        var btnVal = document.getElementById("btn" + i).textContent;
-        // if (btnVal2 < 9) {
-        btnVal2 = parseInt(btnVal.slice(-1)) + 1
-        // }
+document.getElementById("btn0").addEventListener('click', function () {
+    document.getElementById("res").value = document.getElementById("res").value + 0;
+});
 
-        document.getElementById("btn" + i).innerHTML = parseInt(btnVal2)
-        document.getElementById("btn" + btnVal2).innerHTML = parseInt(btnVal)
+document.getElementById("btn1").addEventListener('click', function () {
+    document.getElementById("res").value = document.getElementById("res").value + 1;
+});
+
+document.getElementById("btnClr").addEventListener('click', function () {
+    document.getElementById("res").value = "";
+});
+
+document.getElementById("btnSum").addEventListener('click', function () {
+    document.getElementById("res").value = document.getElementById("res").value + "+";
+});
+
+document.getElementById("btnSub").addEventListener('click', function () {
+    document.getElementById("res").value = document.getElementById("res").value + "-";
+});
+
+document.getElementById("btnMul").addEventListener('click', function () {
+    document.getElementById("res").value = document.getElementById("res").value + "*";
+});
+
+document.getElementById("btnDiv").addEventListener('click', function () {
+    document.getElementById("res").value = document.getElementById("res").value + "/";
+});
+
+document.getElementById("btnEql").addEventListener('click', function () {
+    var value = document.getElementById("res").value;
+
+    if (value.indexOf("+") >= 0) {
+        document.getElementById("res").value = parseInt(value.slice(0, value.indexOf("+") - value.length)) + parseInt(value.slice(value.indexOf("+"), value.length))
     }
 
-    document.getElementById("btn1").innerHTML = "2"
-    document.getElementById("btn2").innerHTML = "1"
+    if (value.indexOf("-") >= 0) {
+        document.getElementById("res").value = value.slice(0, value.indexOf("-") - value.length) - value.slice(value.indexOf("-") + 1, value.length)
+    }
 
+    if (value.indexOf("*") >= 0) {
+        document.getElementById("res").value = parseInt(value.slice(0, value.indexOf("*") - value.length)) * value.slice(value.indexOf("*") + 1, value.length);
+    }
+
+    if (value.indexOf("/") >= 0) {
+        document.getElementById("res").value = parseInt(value.slice(0, value.indexOf("/") - value.length)) / value.slice(value.indexOf("/") + 1, value.length);
+    }
 });

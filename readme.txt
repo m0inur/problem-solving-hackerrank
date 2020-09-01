@@ -1,1 +1,1 @@
-Binary calculation solution
+Sherlock and squares solution

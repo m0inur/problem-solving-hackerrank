@@ -1,13 +1,23 @@
-var cumulative = 0;
-var shares = 5;
-var like = 0;
-var days = n;
+//Enter your code here
+var fine = 0;
+var myInput = input.split("\n");
 
-while (days >= 1) {
-    days--;
-    like = Math.floor(shares / 2);
-    cumulative += like;
-    shares = Math.floor(shares / 2) * 3;
+var actual = myInput[0].split(" ");
+var expected = myInput[1].split(" ");
+
+for (var i = 0; i < actual.length; i++) {
+    actual[i] = parseInt(actual[i]);
+    expected[i] = parseInt(expected[i]);
 }
 
-return cumulative;
+if (actual[0] <= expected[0] && actual[1] <= expected[1] && actual[2] <= expected[2]) {
+    fine = 0;
+} else if (actual[0] > expected[0] && actual[1] == expected[1] && actual[2] == expected[2]) {
+    fine = 15 * (actual[0] - expected[0]);
+} else if (actual[1] > expected[1] && actual[2] == expected[2]) {
+    fine = 500 * (actual[1] - expected[1])
+} else if (actual[2] != expected[2] && actual[2] > expected[2]) {
+    fine = 10000;
+}
+
+console.log(fine);

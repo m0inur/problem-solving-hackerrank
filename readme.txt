@@ -1,1 +1,1 @@
-Bubble sort solution
+Viral advertisement solution

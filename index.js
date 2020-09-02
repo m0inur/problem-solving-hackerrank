@@ -1,23 +1,23 @@
-//Enter your code here
-var fine = 0;
-var myInput = input.split("\n");
+function equalizeArray(arr) {
+    var deletes = 0;
+    var highestOccur = 0;
+    var biggestOccurIndex = 0;
+    let occurMap = arr.reduce((acc, val) => acc.set(val, 1 + (acc.get(val) || 0)), new Map());
 
-var actual = myInput[0].split(" ");
-var expected = myInput[1].split(" ");
+    for (let [key, value] of occurMap) {
+        if (value > highestOccur) {
+            highestOccur = value;
+            biggestOccurIndex = key;
+        }
+    }
 
-for (var i = 0; i < actual.length; i++) {
-    actual[i] = parseInt(actual[i]);
-    expected[i] = parseInt(expected[i]);
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] != biggestOccurIndex) {
+            arr.splice(i, 1);
+            i -= 1
+            deletes++;
+        }
+    }
+
+    return deletes;
 }
-
-if (actual[0] <= expected[0] && actual[1] <= expected[1] && actual[2] <= expected[2]) {
-    fine = 0;
-} else if (actual[0] > expected[0] && actual[1] == expected[1] && actual[2] == expected[2]) {
-    fine = 15 * (actual[0] - expected[0]);
-} else if (actual[1] > expected[1] && actual[2] == expected[2]) {
-    fine = 500 * (actual[1] - expected[1])
-} else if (actual[2] != expected[2] && actual[2] > expected[2]) {
-    fine = 10000;
-}
-
-console.log(fine);

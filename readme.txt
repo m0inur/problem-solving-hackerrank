@@ -1,1 +1,1 @@
-30 Days Of Code - Nested Logic Solution
+Equalize the array solution

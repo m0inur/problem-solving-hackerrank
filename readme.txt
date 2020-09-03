@@ -1,1 +1,1 @@
-Equalize the array solution
+Fair rations solution

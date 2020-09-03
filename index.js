@@ -1,23 +1,40 @@
-function equalizeArray(arr) {
-    var deletes = 0;
-    var highestOccur = 0;
-    var biggestOccurIndex = 0;
-    let occurMap = arr.reduce((acc, val) => acc.set(val, 1 + (acc.get(val) || 0)), new Map());
+function isEven(B) {
+    for (var i = 0; i < B.length; i++) {
+        if (B[i] % 2 != 0) {
+            return false;
+        }
 
-    for (let [key, value] of occurMap) {
-        if (value > highestOccur) {
-            highestOccur = value;
-            biggestOccurIndex = key;
+        if (i == B.length - 1) {
+            return true;
+        }
+    }
+}
+
+function fairRations(B) {
+    var loafs = 0;
+    var ans;
+
+    for (var i = 0; i < B.length; i++) {
+        if (B[i] % 2 != 0) {
+            if (B[i + 1]) {
+                B[i] += 1;
+                B[i + 1] += 1;
+            } else {
+                B[i] += 1;
+                B[i - 1] += 1;
+            }
+            loafs += 2;
+        }
+
+        if (i == B.length - 1) {
+            if (isEven(B)) {
+                ans = loafs;
+                break;
+            } else {
+                ans = "NO"
+            }
         }
     }
 
-    for (var i = 0; i < arr.length; i++) {
-        if (arr[i] != biggestOccurIndex) {
-            arr.splice(i, 1);
-            i -= 1
-            deletes++;
-        }
-    }
-
-    return deletes;
+    return ans;
 }

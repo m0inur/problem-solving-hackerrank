@@ -1,1 +1,1 @@
-Strong password
+Missing numbers

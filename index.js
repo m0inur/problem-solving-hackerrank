@@ -1,33 +1,19 @@
-// Return the minimum number of characters to make the password strong
-function minimumNumber(n, password) {
-    var add = 0;
-    var regexDigit = RegExp(/[0-9]/);
-    var regexLowercase = RegExp(/[a-z]/);
-    var regexHighercase = RegExp(/[A-Z]/);
-    var regexSpecialChars = RegExp(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/);
+var ans;
 
-    if (!regexDigit.test(password)) {
-        add++;
+if (year == 1918) {
+    ans = "26.09." + year;
+} else if (year <= 1917) {
+    if (year % 4 == 0) {
+        ans = "12.09." + year;
+    } else {
+        ans = "13.09." + year;
     }
-
-    if (!regexHighercase.test(password)) {
-        add++;
+} else {
+    if ((year % 400 == 0) || (year % 4 == 0 && year % 100 != 0)) {
+        ans = "12.09." + year;
+    } else {
+        ans = "13.09." + year;
     }
-
-    if (!regexLowercase.test(password)) {
-        add++;
-    }
-
-    if (!regexSpecialChars.test(password)) {
-        add++;
-    }
-
-    n += add;
-
-    if (n < 6) {
-        add += Math.abs(6 - n);
-        n += Math.abs(6 - n);
-    }
-
-    return add;
 }
+
+return ans;

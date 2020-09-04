@@ -1,36 +1,33 @@
-var arr = [1, 3, 5, 9, 13, 22, 27, 35, 46, 51, 55, 83, 87, 23];
+// Return the minimum number of characters to make the password strong
+function minimumNumber(n, password) {
+    var add = 0;
+    var regexDigit = RegExp(/[0-9]/);
+    var regexLowercase = RegExp(/[a-z]/);
+    var regexHighercase = RegExp(/[A-Z]/);
+    var regexSpecialChars = RegExp(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/);
 
-// Complete the insertionSort1 function below.
-function insertionSort1(n, arr) {
-    var last_element = arr[n - 1];
-    var last_index = 0;
-
-    var counter = 0;
-    var isSorted = false;
-
-    for (var i = 1; i <= n; i++) {
-        if (arr[n - i] > last_element) {
-            arr[n - i + 1] = arr[n - i];
-            console.log(arr.join(" "))
-            last_index = n - i;
-        } else {
-            if (counter != 0) {
-                arr[last_index] = last_element;
-                console.log(arr.join(" "))
-                isSorted = true;
-                return;
-            }
-            counter++;
-        }
-
-        if (i == n) {
-            if (!isSorted) {
-                arr[n - i] = last_element;
-                console.log(arr.join(" "))
-            }
-            return;
-        }
+    if (!regexDigit.test(password)) {
+        add++;
     }
-}
 
-insertionSort1(arr.length, arr);
+    if (!regexHighercase.test(password)) {
+        add++;
+    }
+
+    if (!regexLowercase.test(password)) {
+        add++;
+    }
+
+    if (!regexSpecialChars.test(password)) {
+        add++;
+    }
+
+    n += add;
+
+    if (n < 6) {
+        add += Math.abs(6 - n);
+        n += Math.abs(6 - n);
+    }
+
+    return add;
+}

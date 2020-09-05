@@ -1,89 +1,41 @@
-var str = "11 4 11 7 13 4 12 11 10 14";
-var str1 = "11 4 11 7 3 7 10 13 4 8 12 11 10 14 12";
+function numberSort(a, b) {
+    return a - b;
+};
 
-var arr = str.split(" ");
-var bArr = str1.split(" ");
+function main() {
+    let arr = Array(6);
 
-var arrMap = new Map();
-var bArrMap = new Map();
+    for (let i = 0; i < 6; i++) {
+        arr[i] = readLine().split(' ').map(arrTemp => parseInt(arrTemp, 10));
+    }
 
-var occur = 0;
-var missing = [];
+    var failsafe = 0;
+    var counter = 0;
+    var hourglasses = [];
 
-function isSorted(a) {
-    for (var x = 0; x < a.length; x++) {
-        if (a[x] > a[x + 1]) {
-            return false;
-        }
-
-        if (x == a.length - 1) {
-            return true;
+    for (var i = 0; i < arr.length - 2; i++) {
+        counter = 0;
+        for (var j = 0; j < arr[0].length - 2; j++) {
+            hourglasses.push(arr[i].slice(j, 3 + j), arr[i + 1].slice(1 + j, 2 + j), arr[i + 2].slice(j, 3 + j));
         }
     }
+    var sums = [];
+    var sum = 0;
+    var counter = 0;
+
+    for (var i = 0; i < hourglasses.length; i++) {
+        counter++;
+        for (var j = 0; j < hourglasses[i].length; j++) {
+            sum += hourglasses[i][j];
+        }
+
+        if (counter == 3) {
+            sums.push(sum)
+            sum = 0;
+            counter = 0;
+        }
+    }
+
+    sums.sort(numberSort);
+    console.log(sums[sums.length - 1]);
 }
-
-function mySorter(a) {
-    var i = 0;
-    var sorted = false;
-    var swaps = 0;
-
-    while (!sorted) {
-        i++;
-
-        if (a[i] > a[i + 1]) {
-            var index = a[i];
-            a.splice(i, 1, a[i + 1]);
-            a.splice(i + 1, 1, index);
-
-            swaps++;
-        }
-
-        if (i == a.length - 1) {
-            if (isSorted(a)) {
-                break;
-            } else {
-                i = -1;
-            }
-        }
-    }
-
-    return a;
-}
-
-for (var i = 0; i < bArr.length; i++) {
-    occur = 0;
-    if (bArrMap.get(bArr[i])) {
-        occur = bArrMap.get(bArr[i]);
-        occur++;
-        bArrMap.delete(bArr[i]);
-        bArrMap.set(bArr[i], occur);
-    } else {
-        occur++;
-        bArrMap.set(bArr[i], occur);
-    }
-    occur = 0;
-    if (arr[i]) {
-        if (arrMap.get(arr[i])) {
-            occur = arrMap.get(arr[i]);
-            occur++;
-            arrMap.delete(arr[i]);
-            arrMap.set(arr[i], occur);
-        } else {
-            occur++;
-            arrMap.set(arr[i], occur);
-        }
-    }
-}
-
-for (let [key, value] of bArrMap) {
-    if (arrMap.has(key)) {
-        if (arrMap.get(key) != value) {
-            missing.push(parseInt(key));
-        }
-    } else {
-        missing.push(parseInt(key));
-    }
-}
-
-missing = mySorter(missing);
-return missing;

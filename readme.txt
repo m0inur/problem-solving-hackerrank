@@ -1,1 +1,1 @@
-Regex, patterns, into to databases - 30 days of code solution
+Bitwise operators - 30 days of code solution

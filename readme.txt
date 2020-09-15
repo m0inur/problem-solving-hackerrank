@@ -1,1 +1,1 @@
-Bitwise operators - 30 days of code solution
+Find the median - Problem solving

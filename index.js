@@ -1,13 +1,14 @@
-// Complete the beautifulBinaryString function below.
-function beautifulBinaryString(b) {
-    var counter = 0;
+var sent = "";
+var diff = 0;
 
-    for (var i = 0; i < b.length; i++) {
-        if (b[i] == 0 && b[i + 1] == 1 && b[i + 2] == 0) {
-            i += 2;
-            counter++;
-        }
-    }
-
-    return counter;
+for (var i = 0; i < Math.floor(str.length / 3); i++) {
+    sent += "SOS";
 }
+
+for (var i = 0; i < str.length; i++) {
+    if (str[i] != sent[i]) {
+        diff++;
+    }
+}
+
+return diff;

@@ -1,1 +1,1 @@
-Alternating Characters - Problem solving
+Beautiful Binary String - Problem solving

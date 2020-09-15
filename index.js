@@ -1,13 +1,13 @@
-function alternatingCharacters(string) {
-    var deletes = 0;
+// Complete the beautifulBinaryString function below.
+function beautifulBinaryString(b) {
+    var counter = 0;
 
-    for (var i = 0; i < string.length; i++) {
-        if (string[i] == "A" && string[i + 1] == "A" || string[i] == "B" && string[i + 1] == "B") {
-            string = string.slice(0, i) + string.slice(i + 1);
-            i--;
-            deletes++;
+    for (var i = 0; i < b.length; i++) {
+        if (b[i] == 0 && b[i + 1] == 1 && b[i + 2] == 0) {
+            i += 2;
+            counter++;
         }
     }
 
-    return deletes;
+    return counter;
 }

@@ -1,1 +1,1 @@
-Find the median - Problem solving
+Alternating Characters - Problem solving

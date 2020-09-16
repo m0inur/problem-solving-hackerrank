@@ -1,20 +1,33 @@
-function pangrams(str) {
-    // Turn string into all lowercase and remove whitespaces
-    str = str.toLowerCase();
-    str = str.replace(/ /g, '');
-    var found = [];
+function funnyString(string) {
+    var original = [];
+    var org = [];
+    var reversed = [];
 
-    for (var i = 0; i < str.length; i++) {
-        if (found.indexOf(str[i]) < 0) {
-            found.push(str[i]);
-        } else {
-            str = str.slice(0, i) + str.slice(i);
+    var originalDiff = [];
+    var reversedDiff = [];
+    var isMatched = true;
+
+    for (var i = 0; i < string.length; i++) {
+        original.push(string[i].charCodeAt(0));
+        org.push(string[i].charCodeAt(0));
+    }
+
+    reversed = original.reverse();
+
+    for (var i = 0; i < org.length - 1; i++) {
+        originalDiff.push(Math.abs(org[i] - org[i + 1]));
+        reversedDiff.push(Math.abs(reversed[i] - reversed[i + 1]));
+    }
+
+    for (var i = 0; i < org.length - 1; i++) {
+        if (originalDiff[i] != reversedDiff[i]) {
+            isMatched = false;
         }
     }
 
-    if (found.length == 26) {
-        return "pangram";
+    if (isMatched) {
+        return "Funny";
     } else {
-        return "not pangram";
+        return "Not Funny";
     }
 }

@@ -1,14 +1,19 @@
-function jumpingOnClouds(c, k) {
-    var energy = 100;
-    var n = c.length;
-    var i = k % n;
-    energy -= c[i] * 2 + 1;
+function cutTheSticks(arr) {
+    var output = [];
+    while (arr.length != 0) {
 
-    while (i != 0) {
-        i = (i + k) % n;
-        energy -= c[i] * 2 + 1;
+        var minVal = Math.min(...arr);
+        output.push(arr.length);
+        for (var i = 0; i < arr.length; i++) {
+            var sub = arr[i] - minVal;
+
+            if (sub === 0) {
+                arr.splice(i, 1);
+                i -= 1;
+            } else {
+                arr[i] = sub;
+            }
+        }
     }
-
-
-    return energy
+    return output;
 }

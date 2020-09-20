@@ -1,8 +1,14 @@
-function rotateLeft(d, arr) {
-    for (var i = 0; i < d; i++) {
-        arr.push(arr[0]);
-        arr.splice(0, 1);
+function circularArrayRotation(arr, k, queries) {
+    var newArr = [];
+
+    for (var i = 0; i < k; i++) {
+        arr.unshift(arr[arr.length - 1]);
+        arr.splice(arr.length - 1, 1);
     }
 
-    return arr;
+    for (var i = 0; i < queries.length; i++) {
+        newArr.push(arr[queries[i]]);
+    }
+
+    return newArr;
 }

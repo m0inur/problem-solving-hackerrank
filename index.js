@@ -1,21 +1,20 @@
-// Complete the workbook function below.
-function workbook(chapters, probPerPage, arr) {
-    var page = 0;
-    var specialProbs = 0;
+function flatlandSpaceStations(n, c) {
+    var distances = [];
+    var minuses = [];
 
-    for (var i = 1; i <= chapters; i++) {
-        page++;
+    for (let i = 0; i < n; i++) {
+        if (c.includes(i)) {
+            distances.push(0);
+        } else {
+            minuses = [];
 
-        for (var j = 1; j <= arr[i - 1]; j++) {
-            if (page == j) {
-                specialProbs++;
+            for (let j = 0; j < c.length; j++) {
+                minuses.push(Math.abs(i - c[j]));
             }
 
-            if (j % probPerPage == 0 && j != arr[i - 1]) {
-                page++;
-            }
+            distances.push(Math.min(...minuses));
         }
     }
 
-    return specialProbs;
+    return Math.max(...distances);
 }

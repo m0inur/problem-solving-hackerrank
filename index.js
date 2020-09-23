@@ -1,48 +1,33 @@
-function pageCount(n, p) {
-    var pages = [];
-    var book = [];
-    var flipped = -1;
-    var i = 1;
-    var failsafe = 0;
+function serviceLane(width, cases) {
+    const result = []
+    for (let c of cases) {
+        const slicedArr = width.slice(c[0], c[1] + 1)
+        const min = Math.min(...slicedArr)
+        result.push(min)
+    }
+    return result
+}
 
-    var forwardCounter = 0;
-    var backwardCounter = 0;
-    var foundReversed = false;
+function main() {
+    const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
-    for (i = 1; pages[0] != n; i += 2) {
-        if (pages[1] != n) {
-            pages = [];
-            pages.push(i - 1);
-            pages.push(i);
+    const nt = readLine().split(' ');
 
-            book.push(pages);
-        } else {
-            break;
-        }
+    const n = parseInt(nt[0], 10);
+
+    const t = parseInt(nt[1], 10);
+
+    const width = readLine().split(' ').map(widthTemp => parseInt(widthTemp, 10));
+
+    let cases = Array(t);
+
+    for (let i = 0; i < t; i++) {
+        cases[i] = readLine().split(' ').map(casesTemp => parseInt(casesTemp, 10));
     }
 
-    var i = 0
+    let result = serviceLane(width, cases);
 
-    console.log(book);
-    console.log();
+    ws.write(result.join("\n") + "\n");
 
-    for (i = 0; i < book.length; i++) {
-        if (book[i].indexOf(p) > -1) {
-            forwardCounter = i;
-        }
-
-        if (book[book.length - (i + 1)].indexOf(p) > -1) {
-            foundReversed = true;
-        }
-
-        if (foundReversed == false) {
-            backwardCounter++;
-        }
-    }
-
-    if (forwardCounter < backwardCounter) {
-        return forwardCounter;
-    } else {
-        return backwardCounter;
-    }
+    ws.end();
 }

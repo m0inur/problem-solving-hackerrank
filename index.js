@@ -1,15 +1,17 @@
-function quickSort(arr) {
-    var equal = arr[0];
-    var left = [];
-    var right = [];
+function countingSort(arr) {
+    var occur = [];
 
-    for (var i = 0; i < arr.length; i++) {
-        if (arr[i] > equal) {
-            right.push(arr[i]);
-        } else if (arr[i] < equal) {
-            left.push(arr[i]);
-        }
+    console.log(arr.sort(function (a, b) {
+        return a - b;
+    }))
+
+    for (var i = 0; i < 100; i++) {
+        occur.push(0);
     }
 
-    return [left.join(' '), equal, right.join(' ')];
+    for (var i = 0; i < arr.length; i++) {
+        occur[arr[i]] += 1;
+    }
+
+    return occur;
 }

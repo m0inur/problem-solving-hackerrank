@@ -1,20 +1,15 @@
-function flatlandSpaceStations(n, c) {
-    var distances = [];
-    var minuses = [];
+function quickSort(arr) {
+    var equal = arr[0];
+    var left = [];
+    var right = [];
 
-    for (let i = 0; i < n; i++) {
-        if (c.includes(i)) {
-            distances.push(0);
-        } else {
-            minuses = [];
-
-            for (let j = 0; j < c.length; j++) {
-                minuses.push(Math.abs(i - c[j]));
-            }
-
-            distances.push(Math.min(...minuses));
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] > equal) {
+            right.push(arr[i]);
+        } else if (arr[i] < equal) {
+            left.push(arr[i]);
         }
     }
 
-    return Math.max(...distances);
+    return [left.join(' '), equal, right.join(' ')];
 }

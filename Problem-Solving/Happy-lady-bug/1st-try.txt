@@ -1,0 +1,34 @@
+var arr = "DD_FQ_QQF".split('');
+var bugMap = new Map();
+var isHappy = true;
+var occur = 0;
+
+for (var i = 0; i < arr.length; i++) {
+    if (arr[i] == "_") {
+        arr.splice(i, 1);
+    }
+}
+
+for (var i = 0; i < arr.length; i++) {
+    if (i != 0) {
+        bugMap.set(arr[i], occur);
+    }
+    occur = 0;
+    for (var j = 0; j < arr.length; j++) {
+        if (arr[i] == arr[j]) {
+            occur++;
+        }
+    }
+}
+
+for (let [key, value] of bugMap) {
+    if (value < 2) {
+        isHappy = false;
+    }
+}
+
+if (isHappy) {
+    console.log("YES");
+} else {
+    console.log("NO")
+}

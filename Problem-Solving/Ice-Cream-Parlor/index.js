@@ -1,10 +1,22 @@
-var m = 4;
-var arr = [1, 4, 5, 3, 2];
+function icecreamParlor(money, cost) {
+    var index = [];
+    var found = false;
 
-for (var i = 0; i < arr.length; i++) {
-    for (var j = 0; j < arr.length; j++) {
-        if (arr[i] + arr[j] == m) {
-            console.log("summed to 4");
+    for (var i = 0; i < cost.length; i++) {
+        if (found) {
+            break;
+        }
+
+        for (var j = 0; j < cost.length; j++) {
+            if (i != j) {
+                if (cost[i] + cost[j] == money) {
+                    index.push(i + 1, j + 1);
+                    found = true;
+                    break;
+                }
+            }
         }
     }
+
+    return index;
 }

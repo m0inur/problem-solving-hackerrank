@@ -1,6 +1,13 @@
-var a = [2, 4];
-var b = [16, 32, 96];
+function getTotalX(a, b) {
+    var count = 0;
 
-for (var i = 0; i < a.length; i++) {
-    if ()
+    for (let x = 0; x <= 100; x++) {
+        if (a.every(int => (x % int == 0))) {
+            if (b.every(int => (int % x == 0))) {
+                count++;
+            }
+        }
+    }
+
+    return count;
 }
